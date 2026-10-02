@@ -1,0 +1,39 @@
+# Copy with `nnlan init --config ./state/node/nnlan.toml` to generate a real identity.
+# Relative identity paths are resolved beside this config, not against the shell cwd.
+schema_version = 1
+name = "nnlan"
+identity_file = "identity.key"
+listen = "0.0.0.0:7331"
+relay = true
+max_neighbors = 16
+peers = []
+# Empty uses system DNS. For peer hostname bootstrap with a loopback-only
+# resolver, set actual upstream IP:port addresses (not the local DNS stub).
+dns_servers = []
+
+# Outgoing link protection; independent, enabled by default. Restart to apply.
+# Receiving parity, authenticated ACKs and congestion control remain enabled.
+[repair]
+fec = true
+rtx = true
+
+[tun]
+name = "nnlan0"
+mtu = 1280
+
+[routes]
+advertise = []
+accept = []
+serve_exit = false
+# exit_node = "64-character Ed25519 public key"
+
+# A peer entry requires both endpoint and public_key. Remove peers = [] above
+# before uncommenting the entire block.
+# [[peers]]
+# endpoint = "HOST:PORT"
+# public_key = "64-character Ed25519 public key"
+
+# Replace accept = [] above with entries such as:
+# [[routes.accept]]
+# prefix = "192.168.1.0/24"
+# via = "publisher's 64-character Ed25519 public key"

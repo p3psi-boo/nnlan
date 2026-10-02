@@ -1,0 +1,23 @@
+[Unit]
+Description=nnlan decentralized encrypted overlay
+Requires=nnlan-guard.service
+After=nnlan-guard.service network.target
+Wants=network.target
+
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/nnlan --config /var/lib/nnlan/nnlan.toml run
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=15
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/nnlan
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+[Unit]
+Description=nnlan persistent network guard
+DefaultDependencies=no
+RequiresMountsFor=/var/lib/nnlan /usr/local/bin/nnlan
+After=local-fs.target systemd-modules-load.service systemd-sysctl.service nftables.service
+Wants=network-pre.target
+Before=network-pre.target shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/nnlan --config /var/lib/nnlan/nnlan.toml guard
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/nnlan
+CapabilityBoundingSet=CAP_NET_ADMIN
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+# No ExecStop: removing protection is always an explicit CLI action.
+
+[Install]
+WantedBy=multi-user.target

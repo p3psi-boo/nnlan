@@ -1,0 +1,38 @@
+/target/
+/state/
+/nnlan.toml
+# Keep pre-rename local configuration private too.
+/ggbond.toml
+*.key
+*.sock
+/.direnv/
+/result
+/result-*
+
+__pycache__/
+*.pyc
+
+# Local credentials and runtime identity/state (Cargo.lock stays tracked).
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.state.json
+*.key.lock
+
+# Editor and OS artifacts.
+.DS_Store
+*~
+*.swp
+*.swo
+/.idea/
+/.vscode/
+
+# Local agent context and early research, not part of the public project.
+/CONTEXT.md
+/docs/UURemote-*.md
+/docs/pseudocode/
+/docs/overlay-network-design.md
+/docs/web-version-design.md

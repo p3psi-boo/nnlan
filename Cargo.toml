@@ -1,0 +1,40 @@
+[package]
+name = "nnlan"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97"
+description = "A decentralized encrypted overlay network for Linux"
+publish = false
+
+[dependencies]
+anyhow = "1.0.104"
+blake3 = "1.8.7"
+clap = { version = "4.6.7", features = ["derive"] }
+ed25519-dalek = { version = "3.0.0", features = ["zeroize"] }
+getrandom = "0.4.3"
+ipnet = { version = "2.12.2", features = ["serde"] }
+libc = "0.2.189"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+tempfile = "3.27.0"
+toml = "1.1.6"
+zeroize = "1.9.0"
+snow = { version = "0.10.0", features = ["ring-accelerated"] }
+tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros", "net", "signal", "sync", "time", "io-util", "process"] }
+tun-rs = { version = "2.8.11", features = ["async_tokio"] }
+rustix = { version = "1.1.5", features = ["net"] }
+socket2 = { version = "0.6.5", features = ["all"] }
+nix = { version = "0.31.3", features = ["net", "uio", "time"] }
+reed-solomon-erasure = "6.0.0"
+hickory-resolver = "0.26.3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+dbg_macro = "deny"
+todo = "deny"

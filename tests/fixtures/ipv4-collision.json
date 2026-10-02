@@ -1,0 +1,8 @@
+{
+  "description": "Public test-only Ed25519 seeds; both derive the same IPv4 at probe=0. Never deployment identities.",
+  "counter_a": 2900,
+  "counter_b": 2997,
+  "seed_a": "6874fd82597fd223668bc946f7693f52df7f4a76a02f2aaff46642629cc3ebc5",
+  "seed_b": "87940a10b3149af5a133154e712585a3cb219c7a0a8e679fa89c42bac4569732",
+  "ipv4": "33.168.136.153"
+}
